@@ -56,6 +56,7 @@ function checkGame(){
   if (!bombsCreated.includes(this.idNumberSquare)){
     ++contatoreCelle ;
     this.classList.add('bg-square');
+    msg = 'continua così manca poco!!';
     if (contatoreCelle == (totalSquare - bombsCreated.length) ){
       msg = `Congratulazioni hai vinto!`;
       output.innerHTML = msg;
@@ -63,11 +64,10 @@ function checkGame(){
   }else {
     cover.classList.add('stop-click');
     container.append(cover);
-    msg = `Mi dispiace hai beccato una bomba, ma sei riuscito a cliccare ${contatoreCelle} su ${totalSquare}. `;
-    output.innerHTML = msg;
+    msg = `Mi dispiace hai beccato una bomba, ma sei riuscito a cliccarne ${contatoreCelle} su ${totalSquare}. `;
     showAllBombs();
   }
-
+  output.innerHTML = msg;
 }
 
 function showAllBombs(){
@@ -88,6 +88,10 @@ function reset (){
   output.innerText = '';
 }
 
+/**
+ * 
+ * @param {number} totalSquare 
+ */
 function createBombs (totalSquare){
   let bombs = [];
 
@@ -102,7 +106,12 @@ function createBombs (totalSquare){
    bombsCreated = bombs;
 }
 
-
+/**
+ * 
+ * @param {1} min 
+ * @param {*numbermax} max 
+ * @returns 
+ */
 function randomNumber (min, max){
  let numeroGenerato = Math.floor(Math.random() * (max - min + 1)) + min;
  return numeroGenerato;
