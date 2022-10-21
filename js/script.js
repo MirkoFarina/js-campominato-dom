@@ -8,7 +8,7 @@ const play = document.querySelector('#start');
 const NUMBER_BOMB = 16;
 let bombsCreated = [];
 let contatoreCelle = 0 ;
-
+let output = document.querySelector('.output');
 
 play.addEventListener('click', startGame)
 // BOTTONE PLAY CHE DA INIZIO AL MIO GIOCO
@@ -52,7 +52,6 @@ function createSquare(nSquare){
 function checkGame(){
   const cover = document.createElement('div');
   let totalSquare = Math.pow(difficolta.value, 2);
-  let output = document.querySelector('.output');
   let msg;
   if (!bombsCreated.includes(this.idNumberSquare)){
     ++contatoreCelle ;
@@ -86,6 +85,7 @@ function showAllBombs(){
 function reset (){
   container.innerText = '';
   contatoreCelle = 0;
+  output.innerText = '';
 }
 
 function createBombs (totalSquare){
