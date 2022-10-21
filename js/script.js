@@ -68,6 +68,7 @@ function createSquare(nSquare){
 function checkGame(){
   const square = document.getElementsByClassName('square');
   console.log(square);
+  const cover = document.createElement('div');
   let totalSquare = Math.pow(difficolta.value, 2);
   let output = document.querySelector('.output');
   let msg;
@@ -79,12 +80,13 @@ function checkGame(){
       output.innerHTML = msg;
     }
   }else {
+    cover.classList.add('stop-click');
+    container.append(cover);
     this.classList.add('bomb');
     msg = `Mi dispiace hai beccato una bomba, ma sei riuscito a cliccare ${contatoreCelle} su ${totalSquare}. `;
     output.innerHTML = msg;
   }
 
-  
 }
 
 
