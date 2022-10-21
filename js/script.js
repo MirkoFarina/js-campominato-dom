@@ -48,7 +48,7 @@ function createSquare(nSquare){
 }
 
 
-// AL CLICK SUL QUADRATO MI STAMPA IL SUO "NUMERO" IN CONSOLE, ASSEGNATOGLI NELLA CREAZIONE DI ESSO, E AGGIUNGE IL BG ALLO SQUARE
+// AL CLICK SUL QUADRATO  VERIFICA SE LO SQUARE IN QUEL MOMENTO è O NO UNA BOMBA
 function checkGame(){
   const cover = document.createElement('div');
   let totalSquare = Math.pow(difficolta.value, 2);
