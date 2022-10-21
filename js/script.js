@@ -21,7 +21,9 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento. */
 const container = document.querySelector('.container');
 const difficolta = document.querySelector('select');
 const play = document.querySelector('#start');
-
+const NUMBER_BOMB = 16;
+let bombsCreated = [];
+let contatoreCelle = 0 ;
 
 
 play.addEventListener('click', startGame)
@@ -32,20 +34,18 @@ function startGame (){
   innerTable(numeroRighe);
 }
 
-
 // INNERTABLE SERVE PER CREARE IL NUMERO DEI QUADRATI CHE MI OCCORRONO
 /**
  * 
  * @param {number} nRighe 
  */
 function innerTable(nRighe){
-  const totalSquare = Math.pow(nRighe, 2);
+  let totalSquare = Math.pow(nRighe, 2);
   for(let i = 0; i < totalSquare; i++ ){
     createSquare(i);
   }
-  
+  createBombs(totalSquare);
 }
-
 
 // CREATESQUARE è COLLEGATA A INNERTABLE E MI GENERA IL QUADRATO STESSO, in cui aggiungo lo style in line al tag per far si che la griglia sia sempre calcolata nel modo giusto.
 /**
@@ -60,19 +60,51 @@ function createSquare(nSquare){
   container.append(square);
   square.idNumberSquare = nSquare + 1;
   square.addEventListener('click', nameSquare)
-
   return square;
 }
 
 
 // AL CLICK SUL QUADRATO MI STAMPA IL SUO "NUMERO" IN CONSOLE, ASSEGNATOGLI NELLA CREAZIONE DI ESSO, E AGGIUNGE IL BG ALLO SQUARE
-function nameSquare(event){
-  let idSquare = this.idNumberSquare;
-  this.classList.add('bg-square');
-  console.log(idSquare);
+function nameSquare(){
+  let totalSquare = Math.pow(difficolta.value, 2);
+
+  if (!bombsCreated.includes(this.idNumberSquare)){
+    ++contatoreCelle ;
+    this.classList.add('bg-square');
+    console.log('continua');
+    console.log(contatoreCelle);
+    if (contatoreCelle == (totalSquare - bombsCreated.length) ){
+      alert('win');
+    }
+  }else {
+    console.log(bombsCreated);
+    this.classList.add('bomb');
+    alert('hai perso!');
+  }
 }
 
 
 function reset (){
   container.innerText = '';
+  contatoreCelle = 0;
+}
+
+function createBombs (totalSquare){
+  let bombs = [];
+
+   while (bombs.length < NUMBER_BOMB) {
+    let numberOfBomb = randomNumber (1, totalSquare)
+
+     if (!bombs.includes(numberOfBomb)){
+       bombs.push(numberOfBomb);
+     }
+   }
+   
+   bombsCreated = bombs;
+}
+
+
+function randomNumber (min, max){
+ let numeroGenerato = Math.floor(Math.random() * (max - min + 1)) + min;
+ return numeroGenerato;
 }
