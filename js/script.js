@@ -59,13 +59,15 @@ function createSquare(nSquare){
   square.innerText = nSquare + 1;
   container.append(square);
   square.idNumberSquare = nSquare + 1;
-  square.addEventListener('click', nameSquare)
+  square.addEventListener('click', checkGame);
   return square;
 }
 
 
 // AL CLICK SUL QUADRATO MI STAMPA IL SUO "NUMERO" IN CONSOLE, ASSEGNATOGLI NELLA CREAZIONE DI ESSO, E AGGIUNGE IL BG ALLO SQUARE
-function nameSquare(){
+function checkGame(){
+  const square = document.getElementsByClassName('square');
+  console.log(square);
   let totalSquare = Math.pow(difficolta.value, 2);
   let output = document.querySelector('.output');
   let msg;
@@ -74,14 +76,15 @@ function nameSquare(){
     this.classList.add('bg-square');
     if (contatoreCelle == (totalSquare - bombsCreated.length) ){
       msg = `Congratulazioni hai vinto!`;
+      output.innerHTML = msg;
     }
   }else {
-    console.log(bombsCreated);
     this.classList.add('bomb');
     msg = `Mi dispiace hai beccato una bomba, ma sei riuscito a cliccare ${contatoreCelle} su ${totalSquare}. `;
+    output.innerHTML = msg;
   }
 
-  output.innerHTML = msg;
+  
 }
 
 
