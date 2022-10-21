@@ -67,20 +67,21 @@ function createSquare(nSquare){
 // AL CLICK SUL QUADRATO MI STAMPA IL SUO "NUMERO" IN CONSOLE, ASSEGNATOGLI NELLA CREAZIONE DI ESSO, E AGGIUNGE IL BG ALLO SQUARE
 function nameSquare(){
   let totalSquare = Math.pow(difficolta.value, 2);
-
+  let output = document.querySelector('.output');
+  let msg;
   if (!bombsCreated.includes(this.idNumberSquare)){
     ++contatoreCelle ;
     this.classList.add('bg-square');
-    console.log('continua');
-    console.log(contatoreCelle);
     if (contatoreCelle == (totalSquare - bombsCreated.length) ){
-      alert('win');
+      msg = `Congratulazioni hai vinto!`;
     }
   }else {
     console.log(bombsCreated);
     this.classList.add('bomb');
-    alert('hai perso!');
+    msg = `Mi dispiace hai beccato una bomba, ma sei riuscito a cliccare ${contatoreCelle} su ${totalSquare}. `;
   }
+
+  output.innerHTML = msg;
 }
 
 
