@@ -43,7 +43,7 @@ function createSquare(nSquare){
   square.innerText = nSquare + 1;
   container.append(square);
   square.idNumberSquare = nSquare + 1;
-  square.addEventListener('click', checkGame);
+  square.addEventListener('click', checkGame, {once: true});
   return square;
 }
 
@@ -74,7 +74,6 @@ function showAllBombs(){
   const square = document.getElementsByClassName('square');
   for(let i = 0; i < square.length; i++){
       const checkBomb = square[i];
-      console.log(checkBomb);
       if(bombsCreated.includes(parseInt(checkBomb.innerText))){
           square[i].classList.add('bomb');
       }
